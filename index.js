@@ -9,8 +9,8 @@ function calculateValidPercentage(response) {
 
     console.log((new Date().toTimeString()))
     console.log(`Total dos votos válidos: ${validVotes} votos`)
-    console.log(`Porcentagem dos votos do Lula pelo total: ${(lulaVotesPerTotal * 100).toFixed(2)}%`)
-    console.log(`Porcentagem dos votos do Lula atualmente: ${validVotePercentageLula}%`)
+    console.log(`Porcentagem dos votos do Lula dos votos válidos: ${(lulaVotesPerTotal * 100).toFixed(2)}%`)
+    console.log(`Porcentagem dos votos do Lula dos votos contabilizados): ${validVotePercentageLula}%`)
     console.log('__________________________________________________________________');
 }
 
