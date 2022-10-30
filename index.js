@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { format } = require('date-fns')
-
+let getTime = require('date-fns/getTime')
 function isEleito(condicao) {
     if(condicao == 'n') return 'Não eleito' 
     else return 'Eleito'
@@ -9,7 +9,8 @@ function isEleito(condicao) {
 async function showResults (response) {
     const [ candidateZero, candidateOne ] = response.data.cand
     console.log(format(new Date(), "'Data de hoje:' dd/MM/yyyy"))
-    console.log(object);
+    console.log(format(new Date(), "'Horário:' hh:mm:ss aa"))
+    console.log(`${(response.data.pst)}% das urnas apuradas`);
     console.log('__________________________________________________________________');
     
     console.log(`CANDIDATO: ${candidateZero.nm}`);
