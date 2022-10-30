@@ -1,7 +1,7 @@
 {
   "name": "proj_relampago",
   "version": "1.0.0",
-  "description": "",
+  "description": "Eu estava curioso pra saber quanto da porcentagem total o Lula tinha no momento, então eu criei esse código relâmpago (em 20 minutos) que consome a API do TSE e mostra os valores do meu interesse.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2"
-  }
+    "axios": "^0.27.2",
+    "date-fns": "^2.29.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-nise/proj_relampago.git"
+  },
+  "bugs": {
+    "url": "https://github.com/the-nise/proj_relampago/issues"
+  },
+  "homepage": "https://github.com/the-nise/proj_relampago#readme"
 }

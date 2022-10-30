@@ -1,28 +1,35 @@
 const axios = require('axios');
+const { format } = require('date-fns')
 
-function calculateValidPercentage(response) {
-    const totalValidVotes = parseInt(response.data.tv)
-    const countedVotesPercentage = response.data.pst
-    const validVotes = parseFloat(response.data.vv)
-    const totalValidVotesLula = parseInt(response.data.cand[0].vap)
-    const validVotePercentageLula = response.data.cand[0].pvap
-    const lulaVotesPerTotal = totalValidVotesLula / validVotes 
-
-    console.log((new Date().toTimeString()))
-    console.log(`Total dos votos válidos: ${validVotes} votos`)
-    console.log(`Porcentagem dos votos do Lula dos votos válidos: ${(lulaVotesPerTotal * 100).toFixed(2)}%`)
-    console.log(`Porcentagem dos votos do Lula dos votos contabilizados): ${validVotePercentageLula}%`)
-    console.log(`Porcentagem dos votos contabilizados: ${countedVotesPercentage}%`)
-    console.log('__________________________________________________________________');
+function isEleito(condicao) {
+    if(condicao == 'n') return 'Não eleito' 
+    else return 'Eleito'
 }
 
+async function showResults (response) {
+    const [ candidateZero, candidateOne ] = response.data.cand
+    console.log(format(new Date(), "'Data de hoje:' dd/MM/yyyy"))
+    console.log('__________________________________________________________________');
+    
+    console.log(`CANDIDATO: ${candidateZero.nm}`);
+    console.log(`Votos válidos: ${candidateZero.vap} votos`)
+    console.log(`Porcentagem dos votos do Lula dos votos válidos: ${(candidateZero.pvap)}%`)
+    console.log(`Eleito: ${isEleito(candidateZero.e)}`)
+    console.log('__________________________________________________________________');
+
+    console.log(`CANDIDATO: ${candidateOne.nm}`);
+    console.log(`Votos válidos: ${candidateOne.vap} votos`)
+    console.log(`Porcentagem dos votos do Lula dos votos válidos: ${(candidateOne.pvap)}%`)
+    console.log(`Eleito: ${isEleito(candidateOne.e)}`)
+    console.log('__________________________________________________________________');
+}
 
 (async () => {
     try {
         setInterval(async () => {
-            const response = await axios.get('https://resultados.tse.jus.br/oficial/ele2022/544/dados-simplificados/br/br-c0001-e000544-r.json')
-            calculateValidPercentage(response)
-        },10000)
+            const response = await axios.get('https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/br/br-c0001-e000545-r.json')
+            await showResults(response)
+        },2000)
     }
     catch (e) {
         console.log(e);
